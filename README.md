@@ -2,23 +2,35 @@
 ## 1. Написан свой связный список MyLinkedList и сравнили с LinkedList.
 
            Количество элементов 100000, тип  - String.
+           
  MyLinkedList add = 0.0108815 
+ 
  MyLinkedList remuve = 5.2467667
+ 
  LinkedList add = 0.0086905
+ 
  LinkedList remove = 2.5786931
+ 
  
  Выводы очевидны)  LinkedList по всем функциям работает быстрее.
 
 ## 2. Сравнительный анализ производительности основных Java коллекций.
 
  a. Сравнить производительность ArrayList и LinkedList для основных операций
+ 
 
  ArrayList add = 0.0142024 
+ 
  ArrayList get(i) = 1.0E-7 
+ 
  ArrayList remove = 1.2392571 
+ 
  LinkedList add = 0.0094445
+ 
  LinkedList get(i) = 2.962E-4
+ 
  LinkedList remove = 2.2737295
+ 
 
  LinkedList добавляет элементы быстрее, удаляет медленее, чем ArrayList.
 
