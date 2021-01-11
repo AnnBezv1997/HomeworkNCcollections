@@ -36,7 +36,7 @@ public class Main {
         double myResAdd = (double)myTimeAdd/ 1000000000.0 ;
 
 
-        long mySrartRemove = System.nanoTime();
+        long myStartRemove = System.nanoTime();
         for (int i = 0; i < size/2; i++){
             speedMyLinkedList.remove(i);
         }
@@ -57,7 +57,7 @@ public class Main {
         long timeThis = System.nanoTime()-timeThisStart;
         double thisRes = (double)timeThis/ 1000000000.0 ;
 
-        long thisSrartRemove = System.nanoTime();
+        long thisStartRemove = System.nanoTime();
         for (int i = 0; i < size/2; i++){
             speedLinkedList.remove(i);
         }
