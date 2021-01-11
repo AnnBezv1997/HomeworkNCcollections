@@ -98,7 +98,7 @@ public class MyLinkedList<E> implements ILinkedList<E> {
             current.setNextNode(null);
             size--;
             return current.getElement();
-        } else if (index > 0 && index < size) {
+        } else if (index >= 0 && index < size) {
             current = getCurrent(index);
             remove = current.getNextNode().getElement();
             current.setNextNode(current.getNextNode().getNextNode());
@@ -111,7 +111,7 @@ public class MyLinkedList<E> implements ILinkedList<E> {
 
     @Override
     public E set(int index, E element) {
-        if (index > 0 && index < size) {
+        if (index >= 0 && index < size) {
             Node<E> current = first;
             for (int i = 0; i < index; i++) {
                 current = current.getNextNode();
