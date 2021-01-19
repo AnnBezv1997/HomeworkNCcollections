@@ -9,7 +9,10 @@ public class MyLinkedList<E> implements ILinkedList<E> {
     private int size;
     private Node<E> first;
     private Node<E> last;
-
+    
+    public MyLinkedList() {
+        this.size=0;
+    }
     @Override
     public void add(E element) {
       if(size !=0){
@@ -164,24 +167,30 @@ public class MyLinkedList<E> implements ILinkedList<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new ListIterator<>();
+        return new MyListIterator<>();
     }
     /**
      * класс для итератора
      */
-    private class ListIterator<E> implements Iterator<E>{
-        private Node<E> current;
+   private class MyListIterator<E> implements Iterator<E> {
+        private Node<E> lastReturned;
+        private Node<E> next=(Node<E>)first ;
+        private int nextIndex;
 
         @Override
         public boolean hasNext() {
-            return current != null;
+            return nextIndex < size;
         }
 
         @Override
         public E next() {
-           E data = (E)current.getElement();
-           current = current.getNextNode();
-           return data;
-        }
-    }
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            lastReturned = next;
+            next = next.getNextNode();
+            nextIndex++;
+            return lastReturned.getElement();
+       }
+   }
 }
