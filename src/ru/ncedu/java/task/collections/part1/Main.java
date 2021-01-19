@@ -1,7 +1,10 @@
 package ru.ncedu.java.task.collections.part1;
-
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.function.Consumer;
+
+import static ru.ncedu.java.task.collections.part1.SpeedLinkedList.testTimeList;
+import static ru.ncedu.java.task.collections.part1.SpeedMyList.testTimeMyList;
 
 public class Main {
     public static void main(String[] args){
@@ -9,63 +12,40 @@ public class Main {
         myLinkedList.add("my");myLinkedList.add("linked");myLinkedList.add("collections");
         myLinkedList.add("list");myLinkedList.add("return");myLinkedList.add("element");
         System.out.println(myLinkedList.toString());//MyLinkedList [my, linked, collections, list, return, element]
-        myLinkedList.set(5,"head");
-        System.out.println(myLinkedList.toString());//MyLinkedList [my, linked, collections, list, return, head]
-        myLinkedList.remove(2);
-        System.out.println(myLinkedList.toString());//MyLinkedList [my, linked, list, return, head]
-        System.out.println(myLinkedList.get(4));//head
+        myLinkedList.set(0,"head");
+        System.out.println(myLinkedList.toString());//MyLinkedList [head, linked, collections, list, return, element]
+        myLinkedList.remove(0);
+        System.out.println(myLinkedList.toString());//MyLinkedList [linked, collections, list, return, element]
+        System.out.println(myLinkedList.get(4));//element
         String[] arr = myLinkedList.toArray();
-        System.out.println(Arrays.toString(arr));//[my, linked, list, return, head]
+        System.out.println(Arrays.toString(arr));//[linked, collections, list, return, element]
         System.out.println(myLinkedList.indexOf("list"));//2
+
+        myLinkedList.forEach(new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+                System.out.println(s);
+            }
+        });
+        for(String s : myLinkedList){
+             System.out.println(s);
+        }
+        Iterator iter = myLinkedList.iterator();
+        while (iter.hasNext()){
+            System.out.println(iter.next());
+        }
+        /** Все(myLinkedList.forEach; for(String s : myLinkedList); while (iter.hasNext())) выводят:
+         * linked
+         * collections
+         * list
+         * return
+         * element
+         */
         myLinkedList.clear();
         System.out.println(myLinkedList.toString());//MyLinkedList null
 
       testTimeMyList();
       testTimeList();
-    }
-
-    public static void testTimeMyList(){
-        MyLinkedList<String> speedMyLinkedList = new MyLinkedList<>();
-        int size = 100000;
-
-        long myStartAdd = System.nanoTime();
-        for (int i = 0; i< size;i++){
-            speedMyLinkedList.add("List");
-        }
-        long myTimeAdd = System.nanoTime()-myStartAdd;
-        double myResAdd = (double)myTimeAdd/ 1000000000.0 ;
-
-
-        long myStartRemove = System.nanoTime();
-        for (int i = 0; i < size/2; i++){
-            speedMyLinkedList.remove(i);
-        }
-        long myTimeRemove = System.nanoTime() -myStartRemove;
-        double myResRemove = (double)myTimeRemove/ 1000000000.0 ;
-
-        System.out.println("MyLinkedList add = " + myResAdd);
-        System.out.println("MyLinkedList remuve = " + myResRemove);
-    }
-    public static void testTimeList(){
-        LinkedList<String> speedLinkedList = new LinkedList<>();
-        long size = 100000;
-
-        long timeThisStart = System.nanoTime();
-        for (int i = 0; i< size;i++){
-            speedLinkedList.add("List");
-        }
-        long timeThis = System.nanoTime()-timeThisStart;
-        double thisRes = (double)timeThis/ 1000000000.0 ;
-
-        long thisStartRemove = System.nanoTime();
-        for (int i = 0; i < size/2; i++){
-            speedLinkedList.remove(i);
-        }
-        long thisTimeRemove = System.nanoTime() -thisStartRemove;
-        double thisResRemove = (double)thisTimeRemove/ 1000000000.0 ;
-
-        System.out.println("LinkedList add = " + thisRes);
-        System.out.println("LinkedList remove = "+ thisResRemove);
     }
 
 }
