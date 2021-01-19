@@ -1,9 +1,7 @@
 package ru.ncedu.java.task.collections.part1;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 
 public class MyLinkedList<E> implements ILinkedList<E> {
     private int size;
